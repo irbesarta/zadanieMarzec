@@ -147,27 +147,53 @@ console.log(Animal1);
 // z klasy animal mozemy dziedziczyć do klasy osoba age, bo pies i osoba mają wiek
 // trzeba uyć słuwka super, aby dostać dostęp do konstruktora klasy nadrzędnej number, np
 // super(number) w konstrukorze klasy dziedziczącej
-class Vehicle {
-    constructor(hp) {
-        this.horsePower = hp;
+// class Vehicle {
+//     constructor(hp) {
+//         this.horsePower = hp;
+//     }
+//     turnOn = () => {
+//         console.log('hp: ${this.horsePower} ON');
+//     }
+// }
+// class Car extends Vehicle {
+//     constructor(hp, color) {
+//         super(hp);
+//         this.color = color;
+//     }
+//     //nadpisanie klasy z metody Vehicle
+//     giveVoice = () => {
+//         console.log('jestem autem koloru ${this.color} i mam ${this.horsePower} koni mechanicznych');
+//     };
+//     }
+// const car = new Car(100, 'red');
+// car.giveVoice();
+// console.log(car.color);
+
+class Dog{
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
     }
-    turnOn = () => {
-        console.log('hp: ${this.horsePower} ON');
-    }
-}
-class Car extends Vehicle {
-    constructor(hp, color) {
-        super(hp);
-        this.color = color;
-    }
-    //nadpisanie klasy z metody Vehicle
     giveVoice = () => {
-        console.log('jestem autem koloru ${this.color} i mam ${this.horsePower} koni mechanicznych');
-    };
+        console.log("hau hau");
     }
-const car = new Car(100, 'red');
-car.giveVoice();
-console.log(car.color);
+};
+const dog = new Dog('Burek', 2);
+dog.giveVoice();
+console.log(dog);
+
+class Cat extends Dog{
+    constructor(name, age) {
+        super(name, age);
+    }
+    giveVoice = () => {
+        console.log("miau miau");
+    }
+};
+const cat = new Cat('Filemon', 3);
+cat.giveVoice();
+console.log(cat);
+
 
 
 

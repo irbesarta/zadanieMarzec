@@ -6,40 +6,78 @@ const name = 'John Doe';
 let age = 25;
 console.log(name, age,);
 // zwracaja tablice
+
 // map => [] - sluzy do modyfikacji elementow w tablicy
 const items = ["grabie", "szczotka", "grzebien", "durszlak"];
-// tak nie robimy
-const modifiedItems = items.map((item) => {
-    // jezeli item ma wiecej niz 6 znakow to zwroc item-dodatek
-    if (item.length > 6) return `${item}-dodatek`;
+//utwórz funckę która przyjmuje jeden argument i wyświetla go w konsoli
 
-    // w innym wypadku zwroc item
-    return item;
-});
-console.log(modifiedItems);
+const logItem = (item) => { 
+  // console.log(item);
+} 
+// wykorzystaj powyszą funkcje do wyświetlenia "element" w konsoli
+
+logItem("element")
+//powyższe jest to samo co  logItem = (item) => console.log(item)
+// powysza linijka wyświetli "element" w konsoli, bo wywołujemy funkcje logItem z argumentem "element"
+
+//wykorzystaj powyszszą funkcje do wyświetlenia wszystkich elementów z tablicy items
+
+items.forEach(logItem)
+//powyższe jest to samo co  items.forEach((item) => console.log(item))
+// powysza linijka wyświetli w konsoli wszystkie elementy z tablicy items
+
+// stworz funkcje ktora przyjmuje tablice i zwraca nowa tablice z modyfikowanymi elementami których długość jest większa niż 6 znaków
 // filter => [] - sluzy do przefiltrowawnia tablicy po warunku
 // tablica.filter((element, index, array) => warunek{})
 // daliśmy nazwę item, może być dowolna
+
 const filteredItems = items.filter((item) => item.length > 6);
 console.log("przefiltrowana tablica", filteredItems);
+
 //for each => undefined
 // tablica.forEach((element, index, array) => {})
-//cosnt iforEachItems = items.forEach((item) => console.log(item)); - tak nie mona, bo 
-//ta metoda nie zwraca nic, nie modyfikuje lelementów w talbicy, mona coś zpuschować do nowej tablicy, ale nie jest to zalecane, bo jest to nieefektywne, lepiej użyć map. mona coś odczytać, sprawdzić, pobrać wartośc
+//cosnt forEachItems = items.forEach((item) => console.log(item)); - tak nie mona, bo 
+//ta metoda nie zwraca nic, nie modyfikuje lelementów w talbicy,ale nie jest to zalecane, bo jest to nieefektywne, lepiej użyć map. mona coś odczytać, sprawdzić, pobrać wartośc mona coś zpuschować do nowej tablicy, 
+// 
+// stwórz nową tablicę i dodaj do niej wszystkie elementy z tablicy items za pomocą funkcji strzalkowej
+
+
 const secondTab = [];
 items.forEach((item) => {
-    secondTab.push(item);
-    console.log(item);
-    //dzięki temu mamy nową tablicę z elementami z pierwszej tablicy
+  // dzieki iteracji dodajemy kazdy element do nowej tablicy
+  secondTab.push(item);
+  // console.log(item);
 });
-console.log("druga tablica", secondTab);
+
+// console.log("second tab", secondTab);
+// tutaj uwaga - nie mona zrobić tak const items = ["grzebień", "grabie"]; const newItems = items.forEach((item) => newItems.push(item))}; console.log(newItems); bo forEach nie moe zwrócić tablicy
+
+// reduce => wartosc - sluzy do sumowania wartosci w tablicy
+// tablica.reduce((akumulator, element) => akumulator + element, wartosc_poczatkowa)
+// stwórz funkcje która przyjmuje tablicę i zwraca sumę wszystkich elementów w tablicy
+
+const sumItems = items.reduce((akumulator, element) => akumulator + element, "");
+//akumulator to wartość, która jest aktualizowana i modyfikowana w trakcie iteracji, aby przechowywać stan pośredni wyniku.
+// element to bieżący element przetwarzany w danej iteracji.
+// console.log("suma elementow", sumItems);
 
 // funkcje
 // function nazwaFunkcji(parametry) { ciało funkcji }
+//stwórz funkcje która przyjmuje dwa argumenty i zwraca ich sumę
+
 function add(a, b) {
     return a + b;
 }
-const addValue = add(2, 3);// zwraca 5 i moemy te wartość przypisać do zmiennej
+
+// wywolanie funkcji - uruchomienie
+// stwórz fzmienną, któ®a przyjmuje wartość sumy dwóch argumentó wykorzuystując funkcje strzałkową powyszą
+// zwraca 5 i moemy te wartość przypisać do zmiennej
+
+const addValue = add(2, 3);
+
+// stwórz funkcje, która przyjmuje trzy argumenty i zwraca wynik dodawania dwóch pierwszych argumentów, a następnie dzielenie przez trzeci argument
+// jeśli trzeci argument jest równy 0, to zwróć "Nie dziel przez zero"
+
 function addAnd(a, b, c) {
     console.log(a + b) / c;
     if (c === 0) {
@@ -48,6 +86,8 @@ function addAnd(a, b, c) {
     return (a + b) / c;
 
 }
+// stwórz funkcję, która uywa funkcji addAnd, aby dodać dwa pierwsze argumenty, a następnie podzielić przez trzeci argument 
+
 const newValue = addAnd(2, 3, 0);
 console.log(newValue);
 const newValue2 = addAnd(2, 3, 2);
@@ -57,6 +97,8 @@ console.log(newValue2);
 // funkcja wywołana wewnątrz innej funkcji, 
 // () => {} - funkcja anonimowa
 // (a, b) => {return a+b} - funkcja strzałkowa, zapis funcki srzałkowej bez uycia wyrazu functu=ion, jest ti nowszy zapis
+// stwórz funkcje strzałkową anonimową, która przyjmuje dwa argumenty i zwraca obiekt z tymi argumentami
+// i wywołaj te funckę z argumentami 3 i 4
 const someFunction = (a, b) => {
     console.log(a + b);
     return a + b;
@@ -74,6 +116,8 @@ const otherFunction = (a, b) => ({});
 // () => {} - funkcja anonimowa przypisana do zmiennej
 // (a, b) => {return a+b} - funkcja strzałkowa
 // teraz najczęściej używany zapis - nowszy zapis, dlatego uywamy strzałkowej
+// stwórz funkcje strzałkową, która przyjmuje dwa argumenty i zwraca większy z nich - zrob na dwa sposoby z return i anonimowo
+
 const biggerValue = (a, b) => {
     if (a > b) {
         return a;
@@ -90,9 +134,46 @@ console.log(betterBiggerValue(2, 3));
 
 //switch - instrukcja warunkowa, która pozwala na porównanie wartości zmiennej z wieloma innymi wartościami, to jest zamiennik if else, ale jest bardziej czytelny, gdy mamy wiele warunków
 // switch (zmienna) { case wartość: instrukcja break; case wartość: instrukcja break; default: instrukcja break; }
+// stwórz funkcję taką jak powyej uywając switch
+// Switch statement jest przydatny, gdy mamy kilka możliwych wartości do porównania. Najczęściej jest używany, gdy chcemy zaimplementować instrukcje warunkowe na podstawie jednej wartości. Oto przykład prostego użycia switch statement w JavaScript:
 
+function ocenZaliczenia(ocena) {
+    let wynik;
+
+    switch (ocena) {
+        case 'A':
+            wynik = "Bardzo dobry";
+            break;
+        case 'B':
+            wynik = "Dobry";
+            break;
+        case 'C':
+            wynik = "Dostateczny";
+            break;
+        case 'D':
+            wynik = "Dopuszczający";
+            break;
+        case 'F':
+            wynik = "Niedostateczny";
+            break;
+        default:
+            wynik = "Nieznana ocena";
+    }
+
+    return wynik;
+}
+
+console.log(ocenZaliczenia('A')); // Wyświetli: "Bardzo dobry"
+console.log(ocenZaliczenia('C')); // Wyświetli: "Dostateczny"
+console.log(ocenZaliczenia('X')); // Wyświetli: "Nieznana ocena"
+// Należy zauważyć, że każdy przypadek (case) musi zawierać instrukcję break, aby przerwać wykonywanie switch statement po dopasowaniu odpowiedniego przypadku.
+// default w switch statement jest używany jako ostatnia opcja, gdy żaden z przypadków nie pasuje do wartości podanej w switch. Jest to rodzaj domyślnej gałęzi, która wykonuje się, gdy nie ma dopasowania do żadnego z pozostałych przypadków.
+
+// W praktyce, default jest używane do obsługi wszystkich innych przypadków, które nie zostały wymienione w przypadkach (cases). Może to obejmować niepoprawne lub nieoczekiwane wartości, które nie pasują do spodziewanych przypadków, lub też po prostu obsługę wszystkich innych możliwych wartości, które nie są wymienione w przypadkach.
 
 //obiekty 
+// stwórz obiekt book z wartościami w których gatunek to tablica z trzema wartościami i wyświetl na koniec pierwszy gatunek z obiektu
+
 const book = {
     title: "Harry Potter",
     author: "J.K. Rowling",
@@ -107,6 +188,7 @@ console.log(book.genres[0]);
 // obiekt = {}
 // obiekt = { klucz: wartość, klucz: wartość, klucz: wartość }
 // zmienna prywatna tylko do odczytu, nie można jej zmienić - ma chyba taki myślnik na początku lub na dole
+
 const person = {
     name: "John",
     age: 25,
@@ -115,15 +197,21 @@ const person = {
 };
 //to cechy elementu, które są zdefiniowane jako właściwości obiektu
 //odczyt danych stary styl
+
 console.log(person.name, person.age);
+
 //destrukturyzacja obiektu - wyciąganie właściwośsci z obiektu, obieranie owoców ze skóry:), to lepszy sposób wyświetlania
 // const { co wyciagamy } = z czego wyciagamy;
 const { name: personName, age: personAge, weight = 0 } = person;
 // weight = 0 - jeśli nie ma w obiekcie weight, to przypisz 0
 console.log(personName, personAge, weight);
+// zmień imię w obiekcie na Jane
+
 person.name = "Jane";
 console.log(person);
 //zmiana wartości właściwości obiektu
+
+// dodaj wartość do obiektu
 
 person.nameee = "Jane";
 // utworzenie nowej właściwości obiektu, bo jest literówka, więc nie zaktualizuje wartości, tylko doda nową właściwość

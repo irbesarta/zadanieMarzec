@@ -32,3 +32,52 @@
 //fetch zwraca promise, który zwraca response, który zwraca promise, który zwraca dane
 
 // request - żądania, które wysyłamy do serwera, np pobieranie danych, dodawanie danych, aktualizowanie danych, usuwanie danych
+
+// 2 sposopby zapisu fetch
+// 1 sposób - starszy, przy uyciu async tunction
+// async function fetchData() {
+// const response = await fetch('endpoint');   // await - czekamy na odpowiedź, zwraca promise, który zwraca response
+// console.log(response);
+
+// 2 sposób - nowszy, przy uyciu arrow function
+const getData = async () => {
+const response = await fetch('endpoint');   // await - czekamy na odpowiedź, zwraca promise, który zwraca response
+}
+console.log(response);
+// fetch + GET przykład
+//limit skip i total - np mamy total 150, limit 30, to moemy zrobić 5 stron, skip 0, 30, 60, 90, 120
+//https://dummyjson.com/docs/products
+const fetchUsers = async () => {
+    const usersURL = 'https://dummyjson.com/products?limit=30&skip=0';
+    try {
+        const response = await fetch(usersURL);
+    
+        if (!response.ok) {
+            throw new Error('Something went wrong');     
+            // error jest wbudowany w js, nie musimy go importować, mozemy sie do niego odwołać zawsze przez new Error
+        }
+        const {users} = await response.json();
+            console.log(users);
+    } catch (error) {
+        console.log(error);
+        // albo alert(error);
+    }};
+fetchUsers();
+// składnia try catch - try - blok kodu, który chcemy wykonać, catch - blok kodu, który wykona się, jeśli wystąpi błąd
+
+//zadanie utwórz funkcje fetchData która pobiera liste produktów i wypisuje tablice elementów w konsoli
+https://dummyjson.com/docs/products
+const fetchProducts = async () => {
+    const productsURL = 'https://dummyjson.com/products?limit=30&skip=0';
+    try {
+        const response = await fetch(productsURL);
+    
+        if (!response.ok) {
+            throw new Error('Something went wrong');     
+        }
+        const {products} = await response.json();
+            console.log(products);
+    } catch (error) {
+        console.log(error);
+    }};
+fetchProducts();

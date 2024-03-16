@@ -48,7 +48,9 @@ console.log(add(2, 3));
 
 const multiply = (a, b) => a * b;
 
-//zadanie 5 Utwórz funkcje strzałkową "calculate" która przyjmuje 3 parametry a,b oraz referencja funkcji. Następnie w ciele funkcji utwórz zmienna do której przypiszesz wywołanie funkcji przekazanej jako parametr - pamiętaj o przekazaniu do niej parametrów. Na samym końcu zwróć wynik funkcji, czyli naszą zmienna wewnatrz funkcji.
+//zadanie 5 Utwórz funkcje strzałkową "calculate" która przyjmuje 3 parametry a,b oraz referencja funkcji.
+// Następnie w ciele funkcji utwórz zmienna do której przypiszesz wywołanie funkcji przekazanej jako parametr - 
+//pamiętaj o przekazaniu do niej parametrów. Na samym końcu zwróć wynik funkcji, czyli naszą zmienna wewnatrz funkcji.
 // const calculate = (a, b, callback) => fn(a, b);
 // console.log(calculate(2, 3, add));
 // 1 opcja
@@ -70,11 +72,15 @@ console.log(calculate(10, 5, multiply));
 // "add" to przekażmy do wywolania funkcji "calculate" funkcje anonimową (kawałek funkcji add) - to jest wlasnie nasz
 // nieszczesny callback :) następnie sprawdz czy wszystko wykonało się prawidłowo
 console.log(calculate(10, 5, (a, b) => a + b));
-// funkcja anonimowa - zamiast wywołać add jak poprzednio, przezakuje funkcję anonimową, która robi to samo co add, ale jest zapisana w jednej linijce, zamiast w dwóch, jak wyżej
+// funkcja anonimowa - zamiast wywołać add jak poprzednio, przezakuje funkcję anonimową, która robi to samo co add, ale jest zapisana w jednej linijce, 
+//zamiast w dwóch, jak wyżej
 //czyli dodajemy to, co było za add, co ta funkcja add robi
-// taka anonimoa nie musoała być wcześniej zdefiniowana, uywane gdy chcemy tego u≥yć raz, ale jak byśmy chcieli częściej uzywac dodwania, to lepiej zdefiniować i robić tak jak w poprzednim przykładzie z calculate i mieć wczesśniej zdefiniowane add, tutaj nie trzeba było mieć zdefiniowanego add
+// taka anonimoa nie musoała być wcześniej zdefiniowana, uywane gdy chcemy tego u≥yć raz, 
+//ale jak byśmy chcieli częściej uzywac dodwania, to lepiej zdefiniować i robić tak jak w poprzednim przykładzie z calculate 
+//i mieć wczesśniej zdefiniowane add, tutaj nie trzeba było mieć zdefiniowanego add
 
 // adanie 7 Utwórz funkcje strzałkową która za parametr przyjmuje obiekt "item" oraz wypisuje go w konsoli.
+
 const showItem = (item) => { console.log(item) };
 //wszystko jedno czy dam item czy name, jakoś sobie to nazywamy, e to będzie jakiś element, moze być element tablicy, obiekt, a potem wywoływanie mona da inną naz∑
 
@@ -91,6 +97,7 @@ myAwesomeTab.forEach((item) => { console.log(item) });
 // tablicowej i przekaż parametr czyli nasz callback (funkcja anonimowa) która przyjmuje parametr "item" dzieki czemu
 // będziemy mieć dostęp do kazdego elementu tablicy podczas iteracji, następnie zwróc element zmodyfikowany o prefix
 // "new …"
+// I opcja 
 const updatedAwesomeTab = myAwesomeTab.map((item) => `new ${item}`);
 // drugi sposob
 // const updatedAwesomeTab = myAwesomeTab.map((item) => {
@@ -99,10 +106,12 @@ const updatedAwesomeTab = myAwesomeTab.map((item) => `new ${item}`);
 console.log(updatedAwesomeTab);
 
 // zadanie 10 Utwórz funkcje strzałkową która przyjmuje dwa parametry "a" oraz "b" i zwraca większą z liczb.
+
 const biggerValue = (a, b) => (a > b ? a : b);
 console.log(biggerValue(2, 3));
 
-// zadanie dodatkowe, kady element będzie miał jakieś id, zmień mi element nr 2
+// zadanie dodatkowe, utwórz obiekt, z 3 elemenntami, w którym kady element będzie miał jakieś id,  i name
+// na nowy element, zwróć nową tablicę, z nowym elementem
 const objectTab = [
     {id: '1',
     name: 'name1',
@@ -115,6 +124,9 @@ const objectTab = [
     },
 ]
     //usuń element nr 2 z tablicy
+
+    
+    //zmiana nazwhy obiektu nr 2
     //pusta funcka anonimowa to ()=> {ciało funkcji}
     const filteredTab = objectTab.map(item => {
      if (item.id === '2') {
@@ -129,19 +141,29 @@ const objectTab = [
     // sposób na usunięcie elementu drugiego z tablicy, zwróci nam nową tablicę, bez elementu nr 2
     // const newObjectTab = objectTab.filter((item) => item.id !== '2');
     const newObjectTab = objectTab.filter(item => item.id !== '2');
+    // albo
+    const newTab = objectTab.filter((item, index) => index !== 1);
+    console.log(newTab); // Wynik: [{id: '1', name: 'name1'}, {id: '3', name: 'name3'}]
+    // albo
+    
+    objectTab.splice(1, 1); // Usuwamy jeden element z indeksem 1
+    console.log(objectTab); // Wynik: [{id: '1', name: 'name1'}, {id: '3', name: 'name3'}]
+
+
     // wszystkie elementy mające warunek true, trafią do nowej tablicy
     console.log(filteredTab);
     console.log(newObjectTab);
 
     // zadanie 10 Utwórz zmienna o nazwie "filteredAwesomeTab" która będzie przechowywać przefiltrowane elementy które maja
 // length > 3
-const filteredAwesomeTab = myAwesomeTab.filter(item => item.length >= 3);
+
+const filteredAwesomeTab = myAwesomeTab.filter((item) => item.length >= 3);
 console.log(filteredAwesomeTab);
 // przy obiekcie trzeba by dać .length, ale przy stringu nie trzeba, bo to jest właściwość, a nie obiekt, obiekt musiałby mieć właściwość length, żeby to zadziałało
 
 // 
-// Utwórz w index.html input o ID = "firstName" i atrybucie "name" === "firstName" następnie w index.js utwórz funkcje strzałkową o nazwie "getFormData" w której
-// utworzysz zmienna która przechowuje element input pobrany dzięki
+// Utwórz w index.html input o ID = "firstName" i atrybucie "name" === "firstName" następnie w index.js utwórz funkcje strzałkową o nazwie
+//  "getFormData" w której utworzysz zmienna która przechowuje element input pobrany dzięki
 // "querySelector", na samym końcu wypisz wynik w konsoli. Aby
 // sprawdzić czy wszystko gra > wywolaj funkcje
 

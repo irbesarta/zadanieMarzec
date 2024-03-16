@@ -6,13 +6,13 @@ const a = {
 //kopiowanie nieprawidłowe
 // const b = a;
 // console.log(a, b);
-// w const a mamy referencję, e w szufladzie w biurku jest ten obiekt a, a w const b mamy referencję do tej samej szuflady, więc jak zmienimy coś w a, to zmienimy to samo w b, bo obiekt jest ten sam, tylko referencja inna
+// w const a mamy referencję, a w szufladzie w biurku jest ten obiekt a, a w const b mamy referencję do tej samej szuflady, więc jak zmienimy coś w a, to zmienimy to samo w b, bo obiekt jest ten sam, tylko referencja inna
 // b.name = 'Marek';
 // console.log(a, b);
 
 const b = {
     ...a,
-    nastName: 'Nowak',
+    lastName: 'Nowak',
     age: 40,
 }
 // spread operator ... - rozwijamy obiekt a, tworzymy nowy obiekt b, który ma te same właściwości co a, ale jest to nowy obiekt, więc jak zmienimy coś w a, to nie zmienimy tego samego w b
@@ -128,6 +128,7 @@ class Animal {
         this.age = this.age + 1;
         console.log(this.age);
     }
+    //inny sposób na te same metody
     // giveVoice() {
     //     console.log(this.name);
     // }
@@ -154,7 +155,7 @@ console.log(Animal1);
 //     turnOn = () => {
 //         console.log('hp: ${this.horsePower} ON');
 //     }
-// }
+// };
 // class Car extends Vehicle {
 //     constructor(hp, color) {
 //         super(hp);

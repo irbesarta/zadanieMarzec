@@ -203,6 +203,9 @@ console.log(person.name, person.age);
 //destrukturyzacja obiektu - wyciąganie właściwośsci z obiektu, obieranie owoców ze skóry:), to lepszy sposób wyświetlania
 // const { co wyciagamy } = z czego wyciagamy;
 const { name: personName, age: personAge, weight = 0 } = person;
+// ale mona też zostawić te same nazwy, np const { name, age, weight = 0 } = person;
+// wówczas name, age, weight to będą te same nazwy, co w obiekcie
+// console.log(name, age, weight);
 // weight = 0 - jeśli nie ma w obiekcie weight, to przypisz 0
 console.log(personName, personAge, weight);
 // zmień imię w obiekcie na Jane
@@ -222,10 +225,21 @@ person.nameee = "Jane";
 console.log(person['person-id']);
 person['age'] = 123;
 
+//dodanie właściwości do obiektu
 const input = {
     name: 'email',
     value: 'test@gmial.com',
 }
+person[input.name] = input.value;
+
+// Tworzy obiekt input zawierający dwie właściwości: name i value.
+// Właściwość name ma wartość 'email'.
+// Właściwość value ma wartość 'test@gmial.com'.
+// person[input.name] = input.value;:
+// Przypisuje wartość właściwości input.value do właściwości o nazwie znajdującej się w input.name w obiekcie person.
+// W tym przypadku input.name ma wartość 'email', więc to przypisanie jest równoważne z person['email'] = 'test@gmial.com'.
+// Dzięki temu możemy elastycznie przypisywać wartości do właściwości obiektu, używając zmiennych jako kluczy.
+
 person[input.name] = input.value;
 //dodanie właściwości do obiektu
 person['person-id'] = 'id-person';
@@ -234,17 +248,23 @@ person['person-id'] = 'id-person';
 const bigTab = ['Janek', 'Marek', 'Kasia', 'Basia'];
 const [first, second, third, fourth] = bigTab;
 // nadajemy wewnątrz nawiasów nowe nazwy dla elementów tablicy, jakie chcemy, wypisujemy te, które chcey wyciągnąć w kolejności, w jakiej są w tablicy
-const [, , last] = bigTab;
-// przecinek oznacza, że pomijamy elementy, które nie chcemy wyciągnąć
+const [, , ,last] = bigTab;
+// przecinek oznacza, że pomijamy elementy, które nie chcemy wyciągnąć, teraz do elementu Basia jest przypisana zmienna last oraz fourth
 console.log(bigTab[70])
+
+// stwórz funckję, która zwraca obiekt z dwoma właściwościami, jedna to tablica z trzema wartościami, a druga to liczba
 
 const getState = (a, b) => {
     const value = 0;
     const tab = ['123', 2, 3];
     return [value, tab];
 }
+
+// stwórz zmienną która przyjmuje wartość zwróconą przez funkcję powyżej i wyświetl wartość pierwszej właściwości obiektu
 const stateValue = getState();
 console.log(stateValue[0], stateValue[1]);
+
+// destrukturyzacja tablicowa, wyciąganie wartości z tablicy getState i wyświetlenie ich
 
 const [firstItem, secondItem] = getState();
 console.log(firstItem, secondItem);
@@ -264,7 +284,69 @@ console.log(getTabValue[0], getTabValue[3],);
 const [firstValue, , , secondValue,] = getTab();
 console.log(firstValue, secondValue,);
 
-//spread operator - operator rozwijania, pozwala na rozwinięcie tablicy lub obiektu, pozwala na kopiowanie tablicy lub obiektu, pozwala na dodanie nowych elementów do tablicy lub obiektu  - ...nazwaTablicy
+let a = {
+    name: 'a'
+  };
+  let b = a;
+  b.name = 'cc'
+  
+  // console.log(`a: ${a.name}, b: ${b.name}`);
+  //W JavaScript, kiedy przypisujesz obiekt do zmiennej, to nie tworzy się nowy obiekt. 
+  //Zmienna po prostu przechowuje referencję do tego samego obiektu, który jest przechowywany w pamięci. Innymi słowy, 
+  //b i a wskazują na ten sam obiekt w pamięci.
+//W wyniku tej operacji, obiekt, który jest referencjonowany przez zmienne a i b, teraz ma właściwość name ustawioną na string 'cc'.
+
+//spread operator - operator rozwijania, pozwala na rozwinięcie tablicy lub obiektu, pozwala na kopiowanie tablicy lub obiektu, 
+//pozwala na dodanie nowych elementów do tablicy lub obiektu  - ...nazwaTablicy
+//Spread operator (...) w JavaScript jest używany do rozwijania elementów z iterowalnych struktur danych, takich jak tablice czy obiekty. Oto kilka przykładów jego użycia:
+// kopiowanie tablicy:
+const originalArray = [1, 2, 3];
+const copiedArray = [...originalArray];
+console.log(copiedArray); // [1, 2, 3]
+
+//W tym przypadku copiedObject będzie nowym obiektem, który ma te same właściwości i wartości co originalObject. Jest to prawdziwa kopia originalObject, a nie tylko referencja do niego. Oznacza to, że modyfikacje w copiedObject nie wpłyną na originalObject i odwrotnie.
+//jesli dałabym 
+// const originalObject = { name: 'John', age: 30 };
+// const copiedObject = { originalObject };
+// console.log(copiedObject);
+//Tutaj copiedObject będzie obiektem, który ma tylko jedną właściwość, której kluczem będzie 'originalObject', a wartością będzie referencja do originalObject. 
+// W rezultacie copiedObject nie jest kopią originalObject, a jedynie obiektem z jedną właściwością, która wskazuje na ten sam obiekt originalObject. 
+// Modyfikacje w copiedObject będą miały wpływ na originalObject, ponieważ to wciąż ten sam obiekt.
+// Podsumowując, użycie spread operatora pozwala na tworzenie prawdziwych kopii obiektów, 
+// podczas gdy bez niego tworzysz obiekty, które wskazują na ten sam obiekt źródłowy.
+
+// łączenie tablic:
+const array1 = [1, 2, 3];
+const array2 = [4, 5, 6];
+const combinedArray = [...array1, ...array2];
+console.log(combinedArray); // [1, 2, 3, 4, 5, 6]
+
+//przekazywanie argumentów do funkcji:
+const numbers = [1, 2, 3, 4, 5];
+const maxNumber = Math.max(...numbers);
+console.log(maxNumber); // 5
+
+//kopiowanie obiektu:
+const originalObject = { name: 'John', age: 30 };
+const copiedObject = { ...originalObject };
+console.log(copiedObject); // { name: 'John', age: 30 }
+
+//łączenie obiektów:
+const object1 = { name: 'John' };
+const object2 = { age: 30 };
+const mergedObject = { ...object1, ...object2 };
+console.log(mergedObject); // { name: 'John', age: 30 }
+
+//dodawanie nowych elementów do tablicy:
+const newArray = [0, ...originalArray, 4];
+console.log(newArray); // [0, 1, 2, 3, 4]
+
+//Tworzenie nowych obiektów z modyfikacją istniejących właściwości:
+const updatedObject = { ...originalObject, age: 40 };
+console.log(updatedObject); // { name: 'John', age: 40 }
+
+//Tworzenie nowych obiektów z dodaniem nowych właściwości:
+const newObject = { ...originalObject, job: 'developer' };
 
 // dom .nazwa_klasy #id lub nazwwa_znacznika
 //mamy np input.email - to znaczy, że szukamy inputa z klasą email

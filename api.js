@@ -230,5 +230,5 @@ deleteProduct(99);
 //block try, catch, finally
 // najpierw wykona się try, potem catch, a potem finally, catch uruchomi się tylko jak jest błąd, blok finally zawsze się uruchomi, niezależnie od tego, czy jest błąd, czy nie, ten finally jak odpalamy ładowanie - loading na true, kiedy dać loading na false na samym końcu, czyli chcemy poinformować uytkownika, e ten loadink się zakończył niezalenie, czy się udało, czy nie
 
-// 
+
 
